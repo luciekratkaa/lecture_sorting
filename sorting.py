@@ -17,7 +17,7 @@ def read_data(file_name):
         for row in reader:
             for header, value in row.items():
                 if header not in data:
-                    data[header] = int(value)
+                    data[header] = [int(value)]
                 else:
                     data[header].append(int(value))
     return data
@@ -33,12 +33,25 @@ def selection_sort(number_array, direction = 'ascending'):
             elif direction == 'descending':
                 if number_array[num_idx] > number_array[min_max_i]:
                     min_max_i = num_idx
-
+        number_array[i], number_array[min_max_i] = number_array[min_max_i], number_array[i]
     return number_array
+
+def bubble_sort(number_array):
+    n = len(number_array)
+    for i in range(n - 1):
+        for num_idx in range(n- i - 1):
+            if number_array[num_idx] > number_array[num_idx + 1]:
+                number_array[num_idx], number_array[num_idx + 1] = number_array[num_idx + 1], number_array[num_idx]
+    return number_array
+
+
+
 
 def main():
     data = read_data("numbers.csv")
     print(data)
+    print(selection_sort(data["series_1"]))
+    print(bubble_sort(data["series_2"]))
     pass
 
 
