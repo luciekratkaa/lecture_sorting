@@ -15,15 +15,18 @@ def read_data(file_name):
         reader = csv.DictReader(csv_file)
         data = {}
         for row in reader:
-            if header not in data:
-                data[header] = int(value)
-            else:
-                data[header].append(int(value))
+            for header, value in row.items():
+                if header not in data:
+                    data[header] = int(value)
+                else:
+                    data[header].append(int(value))
     return data
+
+def selection_sort(number_array, direction = 'ascending'):
 
 
 def main():
-    data = read_data(numbers.csv)
+    data = read_data("numbers.csv")
     print(data)
     pass
 
